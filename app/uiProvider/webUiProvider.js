@@ -1,5 +1,5 @@
 var webUiProvider = function () {
-    function init(name) {
+    function init() {
         
     }
 }();

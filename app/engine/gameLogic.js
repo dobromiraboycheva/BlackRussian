@@ -1,7 +1,4 @@
 var standartGameLogic = function () {
-    function init() {
-
-    }
 
     function getGameTiles() {
         import tile from 'app/gameObjects/tile.js';
