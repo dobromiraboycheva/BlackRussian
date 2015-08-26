@@ -1,7 +1,6 @@
 var gameManager = function() {
-    function init(inputProvider, outputProvider, logicProvider, playersCount) {
-        this.inputProvider = inputProvider;
-        this.outputProvider = outputProvider;
+    function init(uiProvider, logicProvider, playersCount) {
+        this.uiProvider = uiProvider;
         this.logicProvider = logicProvider;
 
         this.players = getPlayers(playersCount);
@@ -11,7 +10,7 @@ var gameManager = function() {
         this.currentPlayer = this.players[0];
 
         this.tilesPool = logicProvider.getGameTiles();
-        this.tilesOnBoard = [];
+        this.board = [];
 
         this.gameOver = false;
     }
@@ -19,27 +18,23 @@ var gameManager = function() {
 
 
     function gameLoop() {
-        outputProvider.displayGameState(currentPlayer, players, tilesOnBoard);
 
         while (!gameOver) {
-            outputProvider.displayMessage("Make move");
-            var newWordTiles = inputProvider.getMove();
-
-            if (!logicProvider.validateMove(newWordTiles, tilesOnBoard)) {
-                outputProvider.displayMessage("Invalid move");
+            var newBoard = uiProvider.getMove(currentPlayer, board);
+            
+            if (!logicProvider.validateBoard(newBoard)) {
+                uiProvider.message("Invalid move!");
                 continue;
             }
 
-            updateGameState(newWordTiles);
-
-            outputProvider.displayGameState(currentPlayer, players, tilesOnBoard);
-            }
+            updateGameState(newBoard);
         }
     }
 
-    function updateGameState(newWordTiles) {
-        logicProvider.calculateScore(currentPlayer, newWordTiles, tilesOnBoard);
-        tilesOnBoard.concat(newWordTiles);
+    function updateGameState(newBoard) {
+        var turnScore = logicProvider.calculateScore(newBoard, board);
+        currentPlayer.score += turnScore;
+        board = newBoard;
         logicProvider.giveNewTilesToPlayer(currentPlayer, tilesPool);
         currentPlayer = logicProvider.getNextPlayer(currentPlayer, players);
     }
