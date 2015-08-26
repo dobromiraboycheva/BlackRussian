@@ -3,49 +3,22 @@ Teamwork repo for JS APPS course at Telerik Academy 2015
 
 ---------------------------------------------------------------------
 
-Структурата на играта в момента е следната - имаме един gamManager, където е състоянието на текущата игра.
-в gameLogic е цялата логика - чии ред е следващия, валидна ли е дъската, изчисляване на резултати и т.н.
-В uiProvider ще се намира цялата фронт енд логика
-gameManager и uiProvider си обменят два обект - currentPlayer и board.
-в currentPlayer се намират буквите и името на текущия играч и неговия резултат
-board е двумерен масив от букви
-дръпнете си последните промени
-в момента пиша логиката - как се изчислява резултат, валидирането на поставените букви
-uiProvider-a (фронт-енда) ще изобразява дъската дето му се подава и състоянието на текущия играч, който е на ход.
-Ще ima buton submit
-Ако не постави никакви букви на дъската и събмитне, ходът му се брои за пропуснат и е следващия играч
-Ако резултатът му е грешен, се подканва да направи нов валиден ход
+#HOW TO PLAY
+The game starts with 10 tiles with letters. Put tiles on the board with mouse click. Click on tile will select it. Clicking on an empty square on the board will put the tile there. Or if the same tile is clicked again it will be deselected. To submit the word written ob the board, click on submit button. To skip a turn simply click submit without writing anything on the board.
+Only the current player`s name and tiles should be shown per turn.
+All of the players` scores should be shown always.
 
 ---------------------------------------------------------------------
 
-Здравей Тодор, разглеждах кода, който си написал и е много добре структуран. Забелязах някой неща докато разбера логиката, които сигурно сам щеше да намериш, но да се включа и аз с нещо:
+# Current code structure:
 
-В тази функция в gameLogic.js:
-function giveNewTilesToPlayer(player, tilesPool) {
-        while (player.tiles < 10 || tilesPool.length === 0) {
-            player.tiles.push(tilesPool.pop());
-        }
-    }
-    
-tilesPool e всъщност торбата с останалите букви в играта, и ако е така мисля, че в цикъла условието трябва да бъде:
- while (player.tiles.length < 10 && tilesPool.length !== 0)
- 
- В тази функиция в същия файл:
- function getNextPlayer(currentPlayer, players) {
-        var currentPlayerIndex;
-        players.forEach(function (player, index) {
-            if (currentPlayer = player) {
-                currentPlayerIndex = index;
-            }
-        });
-        
-В if-a за проверката кой е следващият плайер си пропуснал още едно равно да сложиш.
+##gameManager.cs
+holds the current game state: player`s points, board`s state etc.
 
-П.С. Съжелявам че тук пиша, но съм на работа и нямам скупе и фацебоок.
+##gameLogic.cs
+contains the entire game logic - who`s turn is next, is the board state valid according to the rules, player`s score calculation etc.
+
+##uiProvider.js
+this will be the portal for the entire front-end logic - requesting user input, visualizing game state ect.
 
 ---------------------------------------------------------------------
-
-ОК, оправено е, благодаря. Следващият път направо си ги пушвай ти промените няма проблем.
-Или ако не си сигурен използвай Issues на гитхъба и там пиши за suggestions.
-
-
