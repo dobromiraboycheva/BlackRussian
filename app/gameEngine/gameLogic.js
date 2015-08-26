@@ -1,27 +1,30 @@
-var standartGameLogic = function () {
+import tile from 'app/gameObjects/tile.js';
+
+var standartGameLogic = function() {
 
     function getGameTiles() {
-        import tile from 'app/gameObjects/tile.js';
 
         // TODO: Implement better generator for game letters, this is just for testing
         // the real game has repeating letters
         var tiles = [];
-        for (var i = 0; i < 26; i+=1) {
+        for (var i = 0; i < 26; i += 1) {
             var newLetter = String.fromCharCode(('a'.charCodeAt(0) + i));
             var newTile = Object.create(tile).init(newLetter);
             tiles.push(newTile);
         }
+        
+        return tiles;
     }
 
     function giveNewTilesToPlayer(player, tilesPool) {
-        while (player.tiles < 10 || tilesPool.length > 0) {
+        while (player.tiles < 10 && tilesPool.length > 0) {
             player.tiles.push(tilesPool.pop());
         }
     }
 
     function getNextPlayer(currentPlayer, players) {
         var currentPlayerIndex;
-        players.forEach(function (player, index) {
+        players.forEach(function(player, index) {
             if (currentPlayer === player) {
                 currentPlayerIndex = index;
             }
@@ -33,12 +36,20 @@ var standartGameLogic = function () {
     }
 
     function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
-        throw;
+        throw new Error;
     }
 
     function validateBoard(board) {
-        throw;
+        throw new Error;
     }
+
+    return {
+        getGameTiles: getGameTiles,
+        giveNewTilesToPlayer: giveNewTilesToPlayer,
+        getNextPlayer: getNextPlayer,
+        calculateScore: calculateScore,
+        validateBoard: validateBoard
+    };
 }();
 
 export default standartGameLogic;
