@@ -1,7 +1,7 @@
 // http://www.sitepoint.com/understanding-es6-modules/
 (function() {
-    import gameManager from 'app/engine/gameManager.js';
-    import gameLogic from 'app/engine/gameLogic.js';
+    import gameManager from 'app/gameEngine/gameManager.js';
+    import gameLogic from 'app/gameEngine/gameLogic.js';
     import webUiProvider from 'app/uiProvider/webUiProvider.js';
 
     var PLAYERS_COUNT = 2;
