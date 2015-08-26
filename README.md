@@ -10,6 +10,18 @@ All of the players` scores should be shown always.
 
 ---------------------------------------------------------------------
 
+# To load the dependencies
+## Install bower:
+npm install -g bower
+## Install bower dependencies (bower.json)
+Navigate to the project root dir in the console and write:
+bower install
+## Install node.js dependencies (package.json)
+Navigate to the project root dir in the console and write:
+npm install
+
+---------------------------------------------------------------------
+
 # Current code structure:
 
 ##gameManager.cs
