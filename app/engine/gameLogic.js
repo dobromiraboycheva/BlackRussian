@@ -1,6 +1,6 @@
 var standartGameLogic = function () {
     function init() {
-
+        
     }
 
     function getGameTiles() {
@@ -36,7 +36,11 @@ var standartGameLogic = function () {
     }
 
     function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
+        throw;
+    }
 
+    function validateBoard(board) {
+        throw;
     }
 }();
 

@@ -1,4 +1,5 @@
 var gameManager = function() {
+
     function init(uiProvider, logicProvider, playersCount) {
         this.uiProvider = uiProvider;
         this.logicProvider = logicProvider;
@@ -17,10 +18,10 @@ var gameManager = function() {
 
 
 
-    function gameLoop() {
+    function startGame() {
 
         while (!gameOver) {
-            var newBoard = uiProvider.getMove(currentPlayer, board);
+            var newBoard = uiProvider.makeMove(currentPlayer, board);
             
             if (!logicProvider.validateBoard(newBoard)) {
                 uiProvider.message("Invalid move!");
