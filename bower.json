@@ -1,0 +1,13 @@
+{
+  "name": "BlackRussian",
+  "version": "0.0.0",
+  "homepage": "https://github.com/todorm85/BlackRussian",
+  "authors": [
+    "Todor Mitskovski <todorbm85@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "system.js": "~0.18.16"
+  }
+}

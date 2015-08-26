@@ -1,0 +1,26 @@
+{
+  "name": "BlackRussian",
+  "version": "1.0.0",
+  "description": "Teamwork repo for JS APPS course at Telerik Academy 2015",
+  "main": "config.js",
+  "dependencies": {
+    "babel-core": "^5.8.22",
+    "bower": "^1.5.2",
+    "http-server": "^0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/todorm85/BlackRussian.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/todorm85/BlackRussian/issues"
+  },
+  "homepage": "https://github.com/todorm85/BlackRussian#readme"
+}
