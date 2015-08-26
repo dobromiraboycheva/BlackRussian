@@ -31,8 +31,6 @@ var tile = function() {
     function init(letter) {
         this.letter = letter;
         this.points = LETTER_POINTS[letter.toLowerCase()];
-        this.row = null;
-        this.col = null;
     }
 }();
 
