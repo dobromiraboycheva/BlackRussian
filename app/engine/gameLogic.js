@@ -1,6 +1,6 @@
 var standartGameLogic = function () {
     function init() {
-        
+
     }
 
     function getGameTiles() {
@@ -17,7 +17,7 @@ var standartGameLogic = function () {
     }
 
     function giveNewTilesToPlayer(player, tilesPool) {
-        while (player.tiles < 10 || tilesPool.length === 0) {
+        while (player.tiles < 10 || tilesPool.length > 0) {
             player.tiles.push(tilesPool.pop());
         }
     }
@@ -25,7 +25,7 @@ var standartGameLogic = function () {
     function getNextPlayer(currentPlayer, players) {
         var currentPlayerIndex;
         players.forEach(function (player, index) {
-            if (currentPlayer = player) {
+            if (currentPlayer === player) {
                 currentPlayerIndex = index;
             }
         });
