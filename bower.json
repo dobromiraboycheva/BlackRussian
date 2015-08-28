@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "~2.1.4",
-    "system.js": "~0.18.16"
+    "system.js": "~0.18.16",
+	"everlive":"~1.5.4"
   }
 }
