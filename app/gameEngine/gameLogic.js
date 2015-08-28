@@ -7,7 +7,7 @@ var standartGameLogic = function() {
         // TODO: Implement better generator for game letters, this is just for testing
         // the real game has repeating letters
         var tiles = [];
-        for (var i = 0; i < 26; i += 1) {
+        for (var i = 0; i < 30; i += 1) {
             var newLetter = String.fromCharCode(('a'.charCodeAt(0) + i));
             var newTile = Object.create(tile).init(newLetter);
             tiles.push(newTile);
