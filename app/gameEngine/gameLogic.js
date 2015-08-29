@@ -36,11 +36,13 @@ var standartGameLogic = function() {
     }
 
     function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
-        throw new Error;
+        // TODO: Implement logic!
+        return 0;
     }
 
-    function validateBoard(board) {
-        throw new Error;
+    function isBoardValid(board) {
+        // TODO: Implement logic
+        return true;
     }
 
     return {
@@ -48,7 +50,7 @@ var standartGameLogic = function() {
         giveNewTilesToPlayer: giveNewTilesToPlayer,
         getNextPlayer: getNextPlayer,
         calculateScore: calculateScore,
-        validateBoard: validateBoard
+        isBoardValid: isBoardValid
     };
 }();
 

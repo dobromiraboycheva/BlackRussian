@@ -8,22 +8,22 @@
     <link href="styles/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="logform">
+    <div id="login-form">
         <input id='username' type='text' value='user'></input>
         <input id='password' type='text' value='password'></input>
         <button id='loginbutton'>Login</button>
         <div id='loginresult'></div>
     </div>
-    <div id="container">
+    <div id="game-menu">
         <div class="row">
             <div class="col-ld-12 text-center"><h1>Игра на думи</h1></div>
         </div>
-        <div id="buttons" class="text-center buttons">
-            <button type="button" id="play" class="btn btn-success">Играй</button>
-            <button type="button" id="rules" class="btn btn-primary">Правила</button>
+        <div>
+            <button type="button" id="play-button" class="btn btn-success">Играй</button>
+            <button type="button" id="rules-button" class="btn btn-primary">Правила</button>
         </div>
     </div>
-    <div id="gamerules" class="text-center buttons">
+    <div id="game-rules" class="text-center button">
         <p>
             <h4> КАК ДА ИГРАЕМ СКРАБЪЛ - ИГРА НА ДУМИ!</h4>
             Скрабъл е игра с думи за 2.3 или 4 играчи. Играта се състои от образуването на взаимнопреплитащи се думи. също както в кръстословиците,
@@ -167,9 +167,7 @@
         </p>
         <button type="button" id="back" class="btn btn-success">Обратно към менюто</button>
     </div>
-    <div id="main">
 
-    </div>
     <script src="bower_components/system.js/dist/system.js"></script>
     <script src="config.js"></script>
     <script>
