@@ -9,6 +9,7 @@ var webUiProvider = (function() {
     function start() {
         loadHandlers();
         $startMenu.show();
+        $('#loading').hide();
     }
 
     function loadHandlers() {
