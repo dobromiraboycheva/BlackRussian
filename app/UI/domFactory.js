@@ -1,11 +1,10 @@
 import $ from 'jquery';
 
 var domFactory = (function () {
-    function createDOMPlayerDashboard() {
+    function createPlayerDashboard() {
         var dash = $('<div />').attr('id', 'dash');
         var submitButton = $('<button />').attr('id', 'submit-button').html('Submit');
         submitButton.appendTo(dash);
-        submitButton.on('click', gameManager.makeMove);
         return dash;
     }
 

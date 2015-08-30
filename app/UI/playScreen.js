@@ -20,6 +20,9 @@ var playScreen = (function() {
 
         var dash = domFactory.createPlayerDashboard();
         dash.on('click', onDashboardClick);
+        var submitButton = $('#dash button');
+        submitButton.on('click', gameManager.makeMove);
+
         dash.appendTo('#game-control');
 
         updateBoardState();
