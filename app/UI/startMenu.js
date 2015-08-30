@@ -8,9 +8,7 @@ var webUiProvider = (function() {
 
     function start() {
         loadHandlers();
-        $(document).on('ready', function () {
-            $startMenu.show();
-        })
+        $startMenu.show();
     }
 
     function loadHandlers() {
