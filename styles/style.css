@@ -5,3 +5,7 @@
 #game-rules {
     display: none;
 }
+
+.text-center {
+    align: text-center;
+}

@@ -2,7 +2,7 @@ import tile from 'app/gameObjects/tile.js';
 
 var standartGameLogic = (function() {
 
-    function getGameTiles() {
+    function getTilesPool() {
 
         // TODO: Implement better generator for game letters, this is just for testing
         // the real game has repeating letters
@@ -46,7 +46,7 @@ var standartGameLogic = (function() {
     }
 
     return {
-        getGameTiles: getGameTiles,
+        getTilesPool: getTilesPool,
         giveNewTilesToPlayer: giveNewTilesToPlayer,
         getNextPlayer: getNextPlayer,
         calculateScore: calculateScore,
