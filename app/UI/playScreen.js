@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import GameManager from 'app/gameEngine/gameManager.js';
+import domFactory from 'app/UI/domFactory.js';
 
 var playScreen = (function() {
 
@@ -13,11 +14,11 @@ var playScreen = (function() {
         var gameControl = $('<div />').attr('id', 'game-control').appendTo(document.body);
         gameControl.on('click', '.dash-tile', onTileClick);
 
-        var board = createDOMBoard();
-        board.on('click', '.board-square', onBoardSquareClick)
+        var board = domFactory.createBoard();
+        board.on('click', '.board-square', onBoardSquareClick);
         board.appendTo('#game-control');
 
-        var dash = createDOMPlayerDashboard();
+        var dash = domFactory.createPlayerDashboard();
         dash.on('click', onDashboardClick);
         dash.appendTo('#game-control');
 
@@ -78,44 +79,6 @@ var playScreen = (function() {
             selectedTile = null;
             console.log(selectedTile);
         }
-    }
-
-    function createDOMPlayerDashboard() {
-        var dash = $('<div />').attr('id', 'dash');
-        var submitButton = $('<button />').attr('id', 'submit-button').html('Submit');
-        submitButton.appendTo(dash);
-        submitButton.on('click', gameManager.makeMove);
-        return dash;
-    }
-
-    function createDOMBoard() {
-        var board = $('<div />').attr('id', 'board');
-
-        var boardSquare = $('<div />').addClass('board-square')
-            .css({
-                width: '30px',
-                height: '30px',
-                border: '1px solid black',
-                display: 'inline-block',
-                margin: 0,
-                padding: 0
-            })
-            .html('&nbsp;'); // we need this for CSS
-
-        var row = 0;
-        var col = 0;
-        for (var i = 0; i < 15 * 15; i += 1) {
-            var newBoardSquare = boardSquare.clone().attr('row', (i / 15) | 0).attr('col', col);
-            board.append(newBoardSquare);
-            if ((i + 1) % 15 === 0) {
-                board.append($('</br>'));
-                col = 0;
-            } else {
-                col++;
-            }
-        }
-
-        return board;
     }
 
     return {
