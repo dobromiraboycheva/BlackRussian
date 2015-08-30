@@ -4,7 +4,7 @@ var data = el.data('Player');
 data.create({
         'name': name,
         'score': 12,
-        'tiles':['à','ô']
+        'tiles':['Ã ','Ã´']
     },
     function (data) {
         console.log(JSON.stringify(data));
