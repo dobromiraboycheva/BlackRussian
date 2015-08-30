@@ -1,13 +1,12 @@
 /*This module contains only the current game state - what`s the current player score,
 what`s the state of the board, how many letters are left to pull*/
 import player from 'app/gameObjects/player.js';
+import logicProvider from 'app/gameEngine/gameLogic.js';
 
-var gameManager = function() {
+var gameManager = (function() {
 
     // this method should be used to initialize the gameManager`s instance when created
-    function init(logicProvider, playersCount) {
-
-        this.logicProvider = logicProvider;
+    function init(playersCount) {
 
         this.tilesPool = logicProvider.getGameTiles();
         this.board = [];
@@ -22,21 +21,12 @@ var gameManager = function() {
         return this;
     }
 
-    // this is the main game loop
     function makeMove(newBoard) {
-        var response = {
-            board: this.board,
-            player: currentPlayer,
-            msg: '',
-        };
-
+        
         if (logicProvider.isBoardValid(newBoard)) {
             updateGameState(newBoard);
-        } else {
-            response.msg = 'Invalid move!';
         }
 
-        return response;
     }
 
     function updateGameState(newBoard) {
@@ -62,6 +52,6 @@ var gameManager = function() {
         init: init,
         makeMove: makeMove,
     };
-}();
+}());
 
 export default gameManager;
