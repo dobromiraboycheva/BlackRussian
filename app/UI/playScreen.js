@@ -2,33 +2,40 @@ import $ from 'jquery';
 import GameManager from 'app/gameEngine/gameManager.js';
 
 var playScreen = (function() {
-    
-    var selectedLetter;
+
+    var selectedTile;
     var gameManager = Object.create(GameManager);
 
     function start() {
         var PLAYERS_COUNT = 2;
         gameManager.init(PLAYERS_COUNT);
 
-        createDOMBoard();
-        createDOMPlayerDashboard();
+        var gameControl = $('<div />').attr('id', 'game-control').appendTo(document.body);
+        gameControl.on('click', '.dash-tile', onTileClick);
 
-        drawBoardState();
-        drawDashboardState();
+        var board = createDOMBoard();
+        board.on('click', '.board-square', onBoardSquareClick)
+        board.appendTo('#game-control');
+
+        var dash = createDOMPlayerDashboard();
+        dash.on('click', onDashboardClick);
+        dash.appendTo('#game-control');
+
+        updateBoardState();
+        updateDashboardState();
+    }
+
+    function updateBoardState() {
 
     }
 
-    function drawBoardState() {
-
-    }
-
-    function drawDashboardState() {
+    function updateDashboardState() {
         var playerTiles = gameManager.currentPlayer.tiles;
         var dash = $('#dash');
         var dashTile = $('<div />').addClass('dash-tile')
             .css({
-                width: '30px',
-                height: '30px',
+                width: '20px',
+                height: '20px',
                 border: '1px solid black',
                 display: 'inline-block',
                 margin: 0,
@@ -41,17 +48,44 @@ var playScreen = (function() {
         });
     }
 
-    function onDashTileClick() {
-        selectedLetter = this.innerHTML;
+    function onDashboardClick() {
+        if (selectedTile && this !== selectedTile.parent()[0]) {
+            selectedTile.css('background', '');
+            $('#dash').append(selectedTile);
+            selectedTile = null;
+        }
+    }
+
+    function onTileClick() {
+        var clickedTile = $(this);
+        if (!selectedTile) {
+            selectedTile = clickedTile.css('background', '#999');
+        } else if (clickedTile[0] === selectedTile[0]) {
+            clickedTile.css('background', '');
+            selectedTile = null;
+        } else {
+            selectedTile.css('background', '');
+            selectedTile = clickedTile.css('background', '#999');
+        }
+    }
+
+    function onBoardSquareClick() {
+        var clickedSquare = $(this);
+
+        if (selectedTile && clickedSquare[0] !== selectedTile.parent()[0] && clickedSquare.children().length === 0) {
+            clickedSquare.append(selectedTile);
+            selectedTile.css('background', '');
+            selectedTile = null;
+            console.log(selectedTile);
+        }
     }
 
     function createDOMPlayerDashboard() {
         var dash = $('<div />').attr('id', 'dash');
-        dash.on('click', '.dash-tile', onDashTileClick);
         var submitButton = $('<button />').attr('id', 'submit-button').html('Submit');
         submitButton.appendTo(dash);
         submitButton.on('click', gameManager.makeMove);
-        dash.appendTo(document.body);
+        return dash;
     }
 
     function createDOMBoard() {
@@ -59,8 +93,8 @@ var playScreen = (function() {
 
         var boardSquare = $('<div />').addClass('board-square')
             .css({
-                width: '20px',
-                height: '20px',
+                width: '30px',
+                height: '30px',
                 border: '1px solid black',
                 display: 'inline-block',
                 margin: 0,
@@ -81,19 +115,7 @@ var playScreen = (function() {
             }
         }
 
-        board.on('click', '.board-square', onBoardSquareClick)
-
-        board.appendTo(document.body);
-    }
-
-    function onBoardSquareClick() {
-        var clickedSquare = this;
-        // console.log(selectedLetter);
-        if (selectedLetter) {
-            clickedSquare.innerHTML = selectedLetter;
-            selectedLetter = '';
-            // TODO: remove letter from player dash
-        }
+        return board;
     }
 
     return {
