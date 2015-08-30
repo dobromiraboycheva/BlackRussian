@@ -8,7 +8,7 @@ var gameManager = (function() {
     // this method should be used to initialize the gameManager`s instance when created
     function init(playersCount) {
 
-        this.tilesPool = logicProvider.getGameTiles();
+        this.tilesPool = logicProvider.getTilesPool();
         this.board = [];
 
         this.players = getPlayers(playersCount);
