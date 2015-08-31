@@ -1,16 +1,32 @@
 var db = require('../wordDB/word.js')();
 //////////////////////////start test scenarios///////////////////////////////////////////////
-var newTiles = [{value: 'c', xCoord: 0, yCoord: 1}, {value: 't', xCoord: 0, yCoord: 2}];
+var newTiles = [{value: 'p', xCoord: 4, yCoord: 1}, {value: 'e', xCoord: 5, yCoord: 1}, {value: 'n', xCoord: 6, yCoord: 1}];
  //var board = [{xCoord: 2, yCoord: 7}];
 
 
-var board = [[null, null, null, null, null],
-             [ {value: 'j', xCoord: 1, yCoord: 1},
-                 {value: 'a', xCoord: 2, yCoord: 1},
-                 {value: 'v', xCoord: 3, yCoord: 1},
-                 {value: 'a', xCoord: 4, yCoord: 1}, null],
-             [null, null, null, null, null]];
+var boardAfterPlayersTurn = [[null, null, null, {value: 'c', xCoord: 3, yCoord: 0}, null, null, null],
+             [null, null, null, {value: 'o', xCoord: 3, yCoord: 1}, {value: 'p', xCoord: 4, yCoord: 1}, {value: 'e', xCoord: 5, yCoord: 1}, {value: 'n', xCoord: 6, yCoord: 1}],
+             [null, null, null, {value: 'o', xCoord: 3, yCoord: 2}, null, null, null],
+             [{value: 'p', xCoord: 0, yCoord: 3}, {value: 'a', xCoord: 1, yCoord: 3}, {value: 'c', xCoord: 2, yCoord: 3}, {value: 'k', xCoord: 3, yCoord: 3}, null, null, null]
+            ];
+
+var testBoard = [[null, null, null, {value: 'c', xCoord: 3, yCoord: 0}, null, null, null],
+    [null, null, null, {value: 'o', xCoord: 3, yCoord: 1}, null, null, null],
+    [null, null, null, {value: 'o', xCoord: 3, yCoord: 2}, null, null, null],
+    [{value: 'p', xCoord: 0, yCoord: 3}, {value: 'a', xCoord: 1, yCoord: 3}, {value: 'c', xCoord: 2, yCoord: 3}, {value: 'k', xCoord: 3, yCoord: 3}, null, null, null]
+];
 //////////////////////////end test scenarios///////////////////////////////////////////////
+
+
+function validateBoard(tiles, board) {
+    if(!checkFreeBoardPosition(tiles, board) && !validTilesPlacement(tiles)) {
+        return false;
+    }
+    
+}
+
+
+
 
 
 // checks if the tile is placed on an already seized place
