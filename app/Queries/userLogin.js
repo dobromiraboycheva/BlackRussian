@@ -1,10 +1,22 @@
-var el = new Everlive('I7pUPb0YeHTrKHP8');
-var username='PeshoPe';
-var password='111111';
+import Everlive from 'everlive';
+import  el from 'app/entryPoint.js';
 
-el.authentication.login( username, password,function (data) {
-        console.log(JSON.stringify(data));
-    },
-    function(error){
-        console.log(JSON.stringify(error));
-    });
+var userLogin = (function () {
+function login(username, password) {
+    var username = username;
+    var password = password;
+
+    el.authentication.login(username, password, function (data) {
+            console.log(JSON.stringify(data));
+        },
+        function (error) {
+            console.log(JSON.stringify(error));
+        });
+}
+    return{
+        login:login
+    }
+
+}());
+
+export default userLogin;

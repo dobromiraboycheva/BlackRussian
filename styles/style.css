@@ -13,3 +13,8 @@
 #start-menu {
     display: none;
 }
+
+#registerPanel {
+    display: none;
+    margin-left: 25%;
+}

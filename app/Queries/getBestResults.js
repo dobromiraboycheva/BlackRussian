@@ -1,4 +1,6 @@
-var el = new Everlive('I7pUPb0YeHTrKHP8');
+import Everlive from 'everlive';
+import  el from 'app/entryPoint.js';
+
 var data = el.data('Player');
 var query = new Everlive.Query();
 query.order('score');

@@ -1,5 +1,7 @@
-var el = new Everlive('I7pUPb0YeHTrKHP8');
-var name='pesho'
+import Everlive from 'everlive';
+import  el from 'app/entryPoint.js';
+
+var name='pesho';
 var data = el.data('Player');
 data.create({
         'name': name,
