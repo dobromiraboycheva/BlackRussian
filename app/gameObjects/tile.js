@@ -1,4 +1,4 @@
-var tile = function() {
+var Tile = function() {
     var allTiles = [],
         LETTER_POINTS = {
         '0': {'blank':2},
@@ -31,4 +31,4 @@ var tile = function() {
     }
 }();
 
-export default tile;
+export default Tile;
