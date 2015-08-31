@@ -17,14 +17,13 @@ var testBoard = [[null, null, null, {value: 'c', xCoord: 3, yCoord: 0}, null, nu
 ];
 //////////////////////////end test scenarios///////////////////////////////////////////////
 
-
+// first check words in dictionary
 function validateBoard(tiles, board) {
-    if(!checkFreeBoardPosition(tiles, board) && !validTilesPlacement(tiles)) {
-        return false;
-    }
-    
-}
 
+    var wordsGenerated = getGeneratedWords(tiles, board);
+    return wordsGenerated;
+}
+// first check words in dictionary
 
 
 
@@ -77,6 +76,10 @@ function getGeneratedWords(newTiles, board) {
     var xStartAdditionalWords;
     var yStartAdditionalWords;
     var additionalWords = '';
+
+    if(!checkFreeBoardPosition(tiles, board) && !validTilesPlacement(tiles)) {
+        return false; /*Could throw Exception also*/
+    }
 
     if(isVerticalWord(newTiles)) {
         sortedTiles = newTiles.sort(function(a, b) {
@@ -185,3 +188,6 @@ function getGeneratedWords(newTiles, board) {
     return words;
 }
 
+function checkWords(words) {
+
+}
