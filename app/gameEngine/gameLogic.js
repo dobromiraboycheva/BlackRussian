@@ -3,14 +3,19 @@ import tile from 'app/gameObjects/tile.js';
 var standartGameLogic = (function() {
 
     function getTilesPool() {
+        var tiles = [],
+            tilesInOrder = tile.getAllTiles();
 
-        // TODO: Implement better generator for game letters, this is just for testing
-        // the real game has repeating letters
-        var tiles = [];
-        for (var i = 0; i < 26; i += 1) {
-            var newLetter = String.fromCharCode(('a'.charCodeAt(0) + i));
-            var newTile = Object.create(tile).init(newLetter);
-            tiles.push(newTile);
+        //for (var i = 0; i < 26; i += 1) {
+        //    var newLetter = String.fromCharCode(('a'.charCodeAt(0) + i));
+        //    var newTile = Object.create(tile).init(newLetter);
+        //    tiles.push(newTile);
+        //}
+
+        while (tilesInOrder.length) {
+            var index = Math.random() * tilesInOrder.length | 0;
+
+            tiles.push(tilesInOrder.splice(index,1));
         }
         
         return tiles;
