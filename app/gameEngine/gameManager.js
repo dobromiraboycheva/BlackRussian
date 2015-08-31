@@ -1,18 +1,18 @@
 /*This module contains only the current game state - what`s the current player score,
-what`s the state of the board, how many letters are left to pull*/
+ what`s the state of the board, how many letters are left to pull*/
 import player from 'app/gameObjects/player.js';
 import logicProvider from 'app/gameEngine/gameLogic.js';
 
-var gameManager = (function() {
+var gameManager = (function () {
 
     // this method should be used to initialize the gameManager`s instance when created
     function init(playersCount) {
 
-        this.tilesPool = logicProvider.getTilesPool();
+        this.tilesPool = logicProvider.getShuffledTilesPool();
         this.board = [];
 
         this.players = getPlayers(playersCount);
-        this.players.forEach(function(player) {
+        this.players.forEach(function (player) {
             logicProvider.giveNewTilesToPlayer(player, this.tilesPool);
         }, this);
         this.currentPlayer = this.players[0];
@@ -22,7 +22,7 @@ var gameManager = (function() {
     }
 
     function makeMove(newBoard) {
-        
+
         if (logicProvider.isBoardValid(newBoard)) {
             updateGameState(newBoard);
         }
@@ -50,7 +50,7 @@ var gameManager = (function() {
 
     return {
         init: init,
-        makeMove: makeMove,
+        makeMove: makeMove
     };
 }());
 

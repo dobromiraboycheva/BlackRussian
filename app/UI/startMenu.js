@@ -1,67 +1,107 @@
-import $ from 'jquery';
+import 'jquery';
 import playScreen from 'app/UI/playScreen.js';
+import userRegistration from 'app/Queries/userRegistration.js';
+import userLogin from 'app/Queries/userLogin.js';
+import signOut from 'app/Queries/userSignout.js';
+import bestResult from 'app/Queries/getBestResults.js';
 
-var webUiProvider = (function() {
-    var $startMenu = $('#start-menu');
-    var $gameRules = $('#game-rules');
-    var $loginForm = $('#login-form');
+var $startMenu = $('#start-menu');
+var $gameRules = $('#game-rules');
+var $loginForm = $('#login-form');
 
-    function start() {
-        loadHandlers();
+function start() {
+    loadHandlers();
+    $startMenu.show();
+    $('#loading').hide();
+}
+
+function loadHandlers() {
+
+    $('#loginButton').on('click', onLoginClick);
+
+    $('#play-button').click(function() {
+        $('#bestResults').hide();
+        $startMenu.hide();
+        playScreen.start();
+    });
+
+    $('#rules-button').click(function() {
+        $startMenu.hide();
+        $gameRules.show();
+        $('#bestResults').hide();
+    });
+
+    $('#back').click(function() {
         $startMenu.show();
-        $('#loading').hide();
-    }
+        $gameRules.hide();
+    });
 
-    function loadHandlers() {
+    $('#registerButton').on('click', onRegisterClick);
+    $('#register').on('click', onRegister);
+    $('#signoutButton').on('click', onSignout);
+    $('#bestresults-button').on('click', showBestResult);
 
-        $("#loginbutton").on("click", onLoginClick);
+}
 
-        $("#play-button").click(function() {
-            $startMenu.hide();
-            playScreen.start();
-        });
+function onRegisterClick() {
 
-        $("#rules-button").click(function() {
-            $startMenu.hide();
-            $gameRules.show();
-        });
+    $('#title').hide();
+    $('#start-menu').hide();
+    $('#registerPanel').show();
+    $('#bestResults').hide();
+}
 
-        $("#back").click(function() {
-            $startMenu.show();
-            $gameRules.hide();
-        });
-    }
+function onRegister(event) {
+    var userName = $('#name').val();
+    var password = $('#register-password').val();
+    var email = $('#email').val();
+    var name = $('#displayName').val();
 
-    function onLoginClick() {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var loginUrl = '' + username + '&password=' + password;
+    userRegistration.registerUser(userName, password, email, name);
 
-        $.ajax({
-            url: loginUrl,
-            type: 'GET',
-            dataType: 'application/json',
-            success: function(data) {
-                onLoginResult(data);
-                $loginForm.hide();
-                $button.show();
-            }
-        });
-    }
+    $('#registerPanel').hide();
+    $('#title').show();
+    $('#start-menu').show();
+    $('#bestResults').hide();
+    event.preventDefault();
+}
 
-    function onLoginResult(data) {
-        var status = data.status;
-        var message = data.message;
+function onLoginClick(event) {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    userLogin.login(username, password);
 
-        if (status === "success") {
-            // do whatever needs to be done after successful login
-            $("#loginresult").html(message);
-        }
-    }
+    $('#play-button').show();
+    $('#signoutButton').show();
+    $('#username').hide();
+    $('#password').hide();
+    $('#registerButton').hide();
+    $('#loginButton').hide();
+    $('#bestResults').hide();
 
-    return {
-        start: start,
-    };
-}());
+    event.preventDefault();
+}
 
-export default webUiProvider;
+function onSignout(event) {
+    $('#play-button').hide();
+    $('#signoutButton').hide();
+    $('#username').show();
+    $('#password').show();
+    $('#registerButton').show();
+    $('#loginButton').show();
+    $('#bestResults').hide();
+    signOut.signout();
+
+    event.preventDefault();
+}
+
+function showBestResult(event) {
+    bestResult.showTopResult();
+    $('#bestResults').toggle();
+
+    event.preventDefault();
+}
+
+export default {
+    start
+};
