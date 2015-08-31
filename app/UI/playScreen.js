@@ -78,7 +78,6 @@ function onBoardSquareClick() {
         clickedSquare.append(selectedTile);
         selectedTile.css('background', '');
         selectedTile = null;
-        console.log(selectedTile);
     }
 }
 

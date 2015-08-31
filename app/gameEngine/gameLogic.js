@@ -4,51 +4,51 @@ function generateGameTiles() {
     var allTiles = [],
         LETTER_POINTS = {
             '0': {
-                'blank': 2
+                'й': 2
             },
             '1': {
-                'a': 9,
-                'e': 8,
-                'i': 8,
-                'n': 4,
-                'o': 9,
-                'p': 4,
-                'r': 4,
-                's': 4,
-                't': 5
+                'а': 9,
+                'е': 8,
+                'и': 8,
+                'н': 4,
+                'о': 9,
+                'п': 4,
+                'р': 4,
+                'с': 4,
+                'т': 5
             },
             '2': {
-                'b': 3,
-                'v': 4,
-                'd': 4,
-                'k': 3,
-                'l': 3,
-                'm': 4
+                'б': 3,
+                'в': 4,
+                'д': 4,
+                'к': 3,
+                'л': 3,
+                'м': 4
             },
             '3': {
-                'g': 3,
-                'aa': 2
+                'г': 3,
+                'ъ': 2
             },
             '4': {
-                'j': 2,
-                'z': 2
+                'ж': 2,
+                'з': 2
             },
             '5': {
-                'ikaratko': 1,
-                'u': 3,
-                'h': 1,
-                'ch': 2,
-                'q': 2
+                'й': 1,
+                'у': 3,
+                'х': 1,
+                'ч': 2,
+                'я': 2
             },
             '8': {
-                'c': 1,
-                'sh': 1,
-                'iu': 1
+                'ц': 1,
+                'ш': 1,
+                'ю': 1
             },
             '10': {
-                'f': 1,
-                'sht': 1,
-                'ermaluk': 1
+                'ф': 1,
+                'щ': 1,
+                'ь': 1
             }
         };
 
@@ -71,9 +71,10 @@ function getShuffledTilesPool() {
     while (tilesInOrder.length) {
         var index = Math.random() * tilesInOrder.length | 0;
 
-        tiles.push(tilesInOrder.splice(index, 1));
+        tiles.push(tilesInOrder.splice(index, 1)[0]);
     }
 
+    console.log(tiles);
     return tiles;
 }
 
