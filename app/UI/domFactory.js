@@ -3,7 +3,7 @@ import $ from 'jquery';
 var domFactory = (function () {
     function createPlayerDashboard() {
         var dash = $('<div />').attr('id', 'dash');
-        var submitButton = $('<button />').attr('id', 'submit-button').html('Submit');
+        var submitButton = $('<button />').attr('id', 'submit-button').addClass('btn-success').html('Submit');
         submitButton.appendTo(dash);
         return dash;
     }
