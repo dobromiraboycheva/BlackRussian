@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import 'jquery';
 import playScreen from 'app/UI/playScreen.js';
 import userRegistration from 'app/Queries/userRegistration.js';
 import userLogin from 'app/Queries/userLogin.js';
