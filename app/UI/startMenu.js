@@ -5,108 +5,103 @@ import userLogin from 'app/Queries/userLogin.js';
 import signOut from 'app/Queries/userSignout.js';
 import bestResult from 'app/Queries/getBestResults.js';
 
-var webUiProvider = (function () {
-    var $startMenu = $('#start-menu');
-    var $gameRules = $('#game-rules');
-    var $loginForm = $('#login-form');
+var $startMenu = $('#start-menu');
+var $gameRules = $('#game-rules');
+var $loginForm = $('#login-form');
 
-    function start() {
-        loadHandlers();
+function start() {
+    loadHandlers();
+    $startMenu.show();
+    $('#loading').hide();
+}
+
+function loadHandlers() {
+
+    $('#loginButton').on('click', onLoginClick);
+
+    $('#play-button').click(function() {
+        $('#bestResults').hide();
+        $startMenu.hide();
+        playScreen.start();
+    });
+
+    $('#rules-button').click(function() {
+        $startMenu.hide();
+        $gameRules.show();
+        $('#bestResults').hide();
+    });
+
+    $('#back').click(function() {
         $startMenu.show();
-        $('#loading').hide();
-    }
+        $gameRules.hide();
+    });
 
-    function loadHandlers() {
+    $('#registerButton').on('click', onRegisterClick);
+    $('#register').on('click', onRegister);
+    $('#signoutButton').on('click', onSignout);
+    $('#bestresults-button').on('click', showBestResult);
 
-        $('#loginButton').on('click', onLoginClick);
+}
 
-        $('#play-button').click(function () {
-            $('#bestResults').hide();
-            $startMenu.hide();
-            playScreen.start();
-        });
+function onRegisterClick() {
 
-        $('#rules-button').click(function () {
-            $startMenu.hide();
-            $gameRules.show();
-            $('#bestResults').hide();
-        });
+    $('#title').hide();
+    $('#start-menu').hide();
+    $('#registerPanel').show();
+    $('#bestResults').hide();
+}
 
-        $('#back').click(function () {
-            $startMenu.show();
-            $gameRules.hide();
-        });
+function onRegister(event) {
+    var userName = $('#name').val();
+    var password = $('#register-password').val();
+    var email = $('#email').val();
+    var name = $('#displayName').val();
 
-        $('#registerButton').on('click', onRegisterClick);
-        $('#register').on('click', onRegister);
-        $('#signoutButton').on('click', onSignout);
-        $('#bestresults-button').on('click', showBestResult);
+    userRegistration.registerUser(userName, password, email, name);
 
-    }
+    $('#registerPanel').hide();
+    $('#title').show();
+    $('#start-menu').show();
+    $('#bestResults').hide();
+    event.preventDefault();
+}
 
-    function onRegisterClick() {
+function onLoginClick(event) {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    userLogin.login(username, password);
 
-        $('#title').hide();
-        $('#start-menu').hide();
-        $('#registerPanel').show();
-        $('#bestResults').hide();
-    }
+    $('#play-button').show();
+    $('#signoutButton').show();
+    $('#username').hide();
+    $('#password').hide();
+    $('#registerButton').hide();
+    $('#loginButton').hide();
+    $('#bestResults').hide();
 
-    function onRegister(event) {
-        var userName = $('#name').val();
-        var password = $('#register-password').val();
-        var email = $('#email').val();
-        var name = $('#displayName').val();
+    event.preventDefault();
+}
 
-        userRegistration.registerUser(userName, password, email, name);
+function onSignout(event) {
+    $('#play-button').hide();
+    $('#signoutButton').hide();
+    $('#username').show();
+    $('#password').show();
+    $('#registerButton').show();
+    $('#loginButton').show();
+    $('#bestResults').hide();
+    signOut.signout();
 
-        $('#registerPanel').hide();
-        $('#title').show();
-        $('#start-menu').show();
-        $('#bestResults').hide();
-        event.preventDefault();
-    }
+    event.preventDefault();
+}
 
-    function onLoginClick(event) {
-        var username = $('#username').val();
-        var password = $('#password').val();
-        userLogin.login(username, password);
+function showBestResult(event) {
+    bestResult.showTopResult();
+    $('#bestResults').toggle();
 
-        $('#play-button').show();
-        $('#signoutButton').show();
-        $('#username').hide();
-        $('#password').hide();
-        $('#registerButton').hide();
-        $('#loginButton').hide();
-        $('#bestResults').hide();
+    event.preventDefault();
+}
 
-        event.preventDefault();
-    }
-
-    function onSignout(event) {
-        $('#play-button').hide();
-        $('#signoutButton').hide();
-        $('#username').show();
-        $('#password').show();
-        $('#registerButton').show();
-        $('#loginButton').show();
-        $('#bestResults').hide();
-        signOut.signout();
-
-        event.preventDefault();
-    }
-
-    function showBestResult(event) {
-        bestResult.showTopResult();
-        $('#bestResults').toggle();
-
-        event.preventDefault();
-    }
-
-    return {
-        start: start
-    };
-
-}());
-
-export default webUiProvider;
+export default {
+    start
+};
