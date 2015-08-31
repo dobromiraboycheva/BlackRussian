@@ -3,6 +3,7 @@ import playScreen from 'app/UI/playScreen.js';
 import userRegistration from 'app/Queries/userRegistration.js';
 import userLogin from 'app/Queries/userLogin.js';
 import signOut from 'app/Queries/userSignout.js';
+import bestResult from 'app/Queries/getBestResults.js';
 
 var webUiProvider = (function () {
     var $startMenu = $('#start-menu');
@@ -37,6 +38,8 @@ var webUiProvider = (function () {
         $('#registerButton').on('click', onRegisterClick);
         $('#register').on('click', onRegister);
         $('#signoutButton').on('click', onSignout);
+        $('#bestresults-button').on('click', showBestResult);
+
     }
 
     function onRegisterClick() {
@@ -76,7 +79,7 @@ var webUiProvider = (function () {
         event.preventDefault();
     }
 
-    function onSignout(event){
+    function onSignout(event) {
         $('#play-button').hide();
         $('#signoutButton').hide();
         $('#username').show();
@@ -84,6 +87,14 @@ var webUiProvider = (function () {
         $('#registerButton').show();
         $('#loginButton').show();
         signOut.signout();
+
+        event.preventDefault();
+    }
+
+    function showBestResult(event) {
+       bestResult.showTopResult();
+        $('#bestResults').toggle();
+
         event.preventDefault();
     }
 
