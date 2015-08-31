@@ -13,6 +13,7 @@ var userRegistration = (function () {
 
         el.Users.register(username, password, attrs, function (data) {
                 console.log(JSON.stringify(data));
+                alert('You are registered successfully and now you can login and play Scrabble');
             },
             function (error) {
                alert(JSON.stringify(error.message));
