@@ -21,6 +21,7 @@ var webUiProvider = (function () {
         $('#loginButton').on('click', onLoginClick);
 
         $('#play-button').click(function () {
+            $('#bestResults').hide();
             $startMenu.hide();
             playScreen.start();
         });
@@ -28,6 +29,7 @@ var webUiProvider = (function () {
         $('#rules-button').click(function () {
             $startMenu.hide();
             $gameRules.show();
+            $('#bestResults').hide();
         });
 
         $('#back').click(function () {
@@ -47,6 +49,7 @@ var webUiProvider = (function () {
         $('#title').hide();
         $('#start-menu').hide();
         $('#registerPanel').show();
+        $('#bestResults').hide();
     }
 
     function onRegister(event) {
@@ -60,7 +63,7 @@ var webUiProvider = (function () {
         $('#registerPanel').hide();
         $('#title').show();
         $('#start-menu').show();
-
+        $('#bestResults').hide();
         event.preventDefault();
     }
 
@@ -75,6 +78,7 @@ var webUiProvider = (function () {
         $('#password').hide();
         $('#registerButton').hide();
         $('#loginButton').hide();
+        $('#bestResults').hide();
 
         event.preventDefault();
     }
@@ -86,13 +90,14 @@ var webUiProvider = (function () {
         $('#password').show();
         $('#registerButton').show();
         $('#loginButton').show();
+        $('#bestResults').hide();
         signOut.signout();
 
         event.preventDefault();
     }
 
     function showBestResult(event) {
-       bestResult.showTopResult();
+        bestResult.showTopResult();
         $('#bestResults').toggle();
 
         event.preventDefault();
