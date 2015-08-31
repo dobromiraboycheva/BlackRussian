@@ -16,7 +16,7 @@ var webUiProvider = (function () {
 
     function loadHandlers() {
 
-        $('#loginbutton').on('click', onLoginClick);
+        $('#loginButton').on('click', onLoginClick);
 
         $('#play-button').click(function () {
             $startMenu.hide();
@@ -59,10 +59,19 @@ var webUiProvider = (function () {
         event.preventDefault();
     }
 
-    function onLoginClick() {
+    function onLoginClick(event) {
         var username = $('#username').val();
         var password = $('#password').val();
-        var loginUrl = '' + username + '&password=' + password;
+        userLogin.login(username, password);
+
+        $('#play-button').show();
+        $('#signoutButton').show();
+        $('#username').hide();
+        $('#password').hide();
+        $('#registerButton').hide();
+        $('#loginButton').hide();
+
+      /*  var loginUrl = '' + username + '&password=' + password;
 
         $.ajax({
             url: loginUrl,
@@ -73,7 +82,8 @@ var webUiProvider = (function () {
                 $loginForm.hide();
                 $button.show();
             }
-        });
+        });*/
+        event.preventDefault();
     }
 
     function onLoginResult(data) {

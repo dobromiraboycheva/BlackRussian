@@ -18,3 +18,11 @@
     display: none;
     margin-left: 25%;
 }
+
+#signoutButton{
+    display: none;
+}
+
+#play-button{
+    display: none;
+}

@@ -10,7 +10,7 @@ function login(username, password) {
             console.log(JSON.stringify(data));
         },
         function (error) {
-            console.log(JSON.stringify(error));
+            console.log(JSON.stringify(error.message));
         });
 }
     return{
