@@ -106,7 +106,7 @@ var webUiProvider = (function () {
     return {
         start: start
     };
-    
+
 }());
 
 export default webUiProvider;
