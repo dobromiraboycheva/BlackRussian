@@ -2,6 +2,7 @@ import $ from 'jquery';
 import playScreen from 'app/UI/playScreen.js';
 import userRegistration from 'app/Queries/userRegistration.js';
 import userLogin from 'app/Queries/userLogin.js';
+import signOut from 'app/Queries/userSignout.js';
 
 var webUiProvider = (function () {
     var $startMenu = $('#start-menu');
@@ -35,6 +36,7 @@ var webUiProvider = (function () {
 
         $('#registerButton').on('click', onRegisterClick);
         $('#register').on('click', onRegister);
+        $('#signoutButton').on('click', onSignout);
     }
 
     function onRegisterClick() {
@@ -71,29 +73,18 @@ var webUiProvider = (function () {
         $('#registerButton').hide();
         $('#loginButton').hide();
 
-      /*  var loginUrl = '' + username + '&password=' + password;
-
-        $.ajax({
-            url: loginUrl,
-            type: 'GET',
-            dataType: 'application/json',
-            success: function (data) {
-                onLoginResult(data);
-                $loginForm.hide();
-                $button.show();
-            }
-        });*/
         event.preventDefault();
     }
 
-    function onLoginResult(data) {
-        var status = data.status;
-        var message = data.message;
-
-        if (status === 'success') {
-            // do whatever needs to be done after successful login
-            $('#loginresult').html(message);
-        }
+    function onSignout(event){
+        $('#play-button').hide();
+        $('#signoutButton').hide();
+        $('#username').show();
+        $('#password').show();
+        $('#registerButton').show();
+        $('#loginButton').show();
+        signOut.signout();
+        event.preventDefault();
     }
 
     return {
