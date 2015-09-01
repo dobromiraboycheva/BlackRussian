@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var tile = function() {
     var LETTER_POINTS = {
         'a': 1,
@@ -28,9 +27,8 @@ var tile = function() {
         'y': 1,
         'z': 1,
     };
-=======
+
 var Tile = (function() {
->>>>>>> e912aa02a1e53833a0ce2cdc84e60a23ac2b6cbf
 
     function init(letter, points) {
         this.letter = letter;
