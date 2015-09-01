@@ -2,22 +2,14 @@ var db = require('../wordDB/word.js')();
 //////////////////////////start test scenarios///////////////////////////////////////////////
 var newTiles = [{value: 'p', xCoord: 4, yCoord: 1},
                 {value: 'e', xCoord: 5, yCoord: 1},
-                { value: 'n', xCoord: 6, yCoord: 1}];
+                {value: 'n', xCoord: 6, yCoord: 1}];
 //var board = [{xCoord: 2, yCoord: 7}];
 
 
 var boardAfterPlayersTurn = [[null, null, null, {value: 'c', xCoord: 3, yCoord: 0}, null, null, null],
-    [null, null, null, {value: 'o', xCoord: 3, yCoord: 1}, {value: 'p', xCoord: 4, yCoord: 1}, {
-        value: 'e',
-        xCoord: 5,
-        yCoord: 1
-    }, {value: 'n', xCoord: 6, yCoord: 1}],
+    [null, null, null, {value: 'o', xCoord: 3, yCoord: 1}, {value: 'p', xCoord: 4, yCoord: 1}, {value: 'e', xCoord: 5,yCoord: 1}, {value: 'n', xCoord: 6, yCoord: 1}],
     [null, null, null, {value: 'o', xCoord: 3, yCoord: 2}, null, null, null],
-    [{value: 'p', xCoord: 0, yCoord: 3}, {value: 'a', xCoord: 1, yCoord: 3}, {
-        value: 'c',
-        xCoord: 2,
-        yCoord: 3
-    }, {value: 'k', xCoord: 3, yCoord: 3}, null, null, null]
+    [{value: 'p', xCoord: 0, yCoord: 3}, {value: 'a', xCoord: 1, yCoord: 3}, {value: 'c',xCoord: 2,yCoord: 3}, {value: 'k', xCoord: 3, yCoord: 3}, null, null, null]
 ];
 
 var testBoard = [[null, null, null, {value: 'c', xCoord: 3, yCoord: 0}, null, null, null],
@@ -108,14 +100,14 @@ function getGeneratedWords(tiles, board) {
         yPosition = sortedTiles[0].yCoord;
 
         // search for word start
-        while (updatedBoard[yPosition][xPosition] !== null && yPosition > -1) {
+        while (yPosition > -1 && updatedBoard[yPosition][xPosition] !== null) {
             yStart = yPosition;
             yPosition--;
         }
         yPosition++;
 
         //search for word end
-        while (updatedBoard[yPosition][xPosition] !== null && yPosition < updatedBoard[0].length) {
+        while (yPosition < updatedBoard[0].length && updatedBoard[yPosition][xPosition] !== null) {
             yEnd = yPosition;
             yPosition++;
         }
@@ -128,18 +120,19 @@ function getGeneratedWords(tiles, board) {
         words.push(word);
         //word = '';
 
-        xPosition = sortedTiles[0].xCoord;
+
         yPosition = sortedTiles[0].yCoord;
 
         //looking for additional words generated
         for (var i = sortedTiles[0].yCoord; i <= sortedTiles[sortedTiles.length - 1].yCoord; i++) {
+            xPosition = sortedTiles[0].xCoord;
             while (updatedBoard[i][xPosition] !== null && xPosition > -1) {
                 xStartAdditionalWords = xPosition;
                 xPosition--;
             }
             xPosition++;
 
-            while (updatedBoard[i][xStartAdditionalWords] !== null && xStartAdditionalWords < updatedBoard[0].length) {
+            while (xStartAdditionalWords < updatedBoard[0].length && updatedBoard[i][xStartAdditionalWords] !== null) {
                 additionalWords += updatedBoard[i][xStartAdditionalWords].value;
                 xStartAdditionalWords++;
             }
@@ -160,7 +153,7 @@ function getGeneratedWords(tiles, board) {
         yPosition = sortedTiles[0].yCoord;
 
         // search for word start
-        while (updatedBoard[yPosition][xPosition] !== null && xPosition > -1) {
+        while (xPosition > -1 && updatedBoard[yPosition][xPosition] !== null) {
             xStart = xPosition;
             xPosition--;
         }
@@ -168,7 +161,7 @@ function getGeneratedWords(tiles, board) {
         xPosition = sortedTiles[sortedTiles.length - 1].xCoord;
 
         //search for word end
-        while (updatedBoard[yPosition][xPosition] !== null && xPosition < updatedBoard[0].length) {
+        while (xPosition < updatedBoard[0].length && updatedBoard[yPosition][xPosition] !== null) {
             xEnd = xPosition;
             xPosition++;
         }
@@ -181,22 +174,23 @@ function getGeneratedWords(tiles, board) {
         //word = '';
 
         xPosition = sortedTiles[0].xCoord;
-        yPosition = sortedTiles[0].yCoord;
+
 
         //looking for additional words generated
         for (var i = sortedTiles[0].xCoord; i <= sortedTiles[sortedTiles.length - 1].xCoord; i++) {
-            while (updatedBoard[yPosition][i] !== null && yPosition > -1) {
+            yPosition = sortedTiles[0].yCoord;
+            while (yPosition > -1 && updatedBoard[yPosition][i] !== null) {
                 yStartAdditionalWords = yPosition;
                 yPosition--;
             }
-            yPosition++;
+            //yPosition++;
 
-            while (updatedBoard[yStartAdditionalWords][i] !== null && yStartAdditionalWords < updatedBoard[0].length) {
+            while (yStartAdditionalWords < updatedBoard[0].length && updatedBoard[yStartAdditionalWords][i] !== null) {
                 additionalWords += updatedBoard[yStartAdditionalWords][i].value;
                 yStartAdditionalWords++;
             }
 
-            if (additionalWords.lengh > 1) {
+            if (additionalWords.length > 1) {
                 words.push(additionalWords);
             }
             additionalWords = '';

@@ -1,4 +1,4 @@
-var player = function () {
+var Player = function () {
     function init(name) {
         this.name = name;
         this.score = 0;
@@ -11,4 +11,4 @@ var player = function () {
     }
 }();
 
-export default player;
+export default Player;
