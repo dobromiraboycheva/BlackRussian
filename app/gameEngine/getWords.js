@@ -1,3 +1,5 @@
+var boardValidator = require('./validateBoard.js')();
+
 function getGeneratedWords(tiles, board) {
     var words = [];
     var word = '';
@@ -19,10 +21,10 @@ function getGeneratedWords(tiles, board) {
     var tilesLengthAdditionalWords = 0;
     // var removedTile;
 
-    if (!validTilesPlacedOnBoard && !freeChecker) {
-        console.log('false from getGeneratedWords when checking for checkFreeBoardPosition and validTilesPlacement');
-        return false; /*Could throw an Exception also*/
-    }
+    //if (!validTilesPlacedOnBoard && !freeChecker) {
+    //    console.log('false from getGeneratedWords when checking for checkFreeBoardPosition and validTilesPlacement');
+    //    return false; /*Could throw an Exception also*/
+    //}
 
     // fill updatedBoard with letters from board
     for (var pos = 0; pos < board.length; pos++) {
@@ -88,7 +90,7 @@ function getGeneratedWords(tiles, board) {
                 xStartAdditionalWords++;
             }
 
-            if(tiles.length - tilesLengthAdditionalWords == 1) {
+            if (tiles.length - tilesLengthAdditionalWords == 1) {
                 tiles.pop();
             }
 
@@ -151,7 +153,7 @@ function getGeneratedWords(tiles, board) {
                 yStartAdditionalWords++;
             }
 
-            if(tiles.length - tilesLengthAdditionalWords === 1) {
+            if (tiles.length - tilesLengthAdditionalWords === 1) {
                 tiles.pop();
             }
 

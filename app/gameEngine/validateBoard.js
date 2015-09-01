@@ -254,4 +254,4 @@ function validateBoard(tiles, board) {
     return words;
 }
 
-console.log(validateBoard(newTiles, testBoard));
+//console.log(validateBoard(newTiles, testBoard));
