@@ -1,4 +1,9 @@
-var boardValidator = require('./validateBoard.js')();
+import isBoardValid from './isBoardValid.js';
+import words from './wordDB.wordsArray.js';
+
+function isVerticalWord(tiles) {
+    return tiles[0].xCoord === tiles[1].xCoord;
+}
 
 function getGeneratedWords(tiles, board) {
     var words = [];
@@ -25,6 +30,10 @@ function getGeneratedWords(tiles, board) {
     //    console.log('false from getGeneratedWords when checking for checkFreeBoardPosition and validTilesPlacement');
     //    return false; /*Could throw an Exception also*/
     //}
+
+    if(!isBoardValid(tiles, board)) {
+        return false;
+    }
 
     // fill updatedBoard with letters from board
     for (var pos = 0; pos < board.length; pos++) {
@@ -185,3 +194,5 @@ function wordChecker(words) {
     }
     return true;
 }
+
+export default getGeneratedWords;

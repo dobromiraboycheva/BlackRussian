@@ -7,3 +7,5 @@ function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
         return currentPlayerScore + tile.points;
     }, currentPlayerScore);
 }
+
+export default calculateScore;

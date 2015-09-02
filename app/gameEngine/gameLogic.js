@@ -1,4 +1,7 @@
 import Tile from 'app/gameObjects/tile.js';
+import isBoardValid from './isBoardValid.js';
+import calculateScore from './calculateScore.js';
+
 
 var standartGameLogic = (function() {
 
@@ -150,12 +153,12 @@ var standartGameLogic = (function() {
                     return 0;
                 }
 
-                function isBoardValid(board) {
-                    // TODO: Implement logic
-                    return true;
-                    console.log(tiles);
-                    return tiles;
-                }
+                //function isBoardValid(board) {
+                //    // TODO: Implement logic
+                //    return true;
+                //    console.log(tiles);
+                //    return tiles;
+                //}
 
                 function giveNewTilesToPlayer(player, tilesPool) {
                     while (player.tiles.length < 10 && tilesPool.length > 0) {
@@ -176,10 +179,10 @@ var standartGameLogic = (function() {
                     return players[currentPlayerIndex];
                 }
 
-                function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
-                    // TODO: Implement logic!
-                    return 0;
-                }
+                //function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
+                //    // TODO: Implement logic!
+                //    return 0;
+                //}
 
                 return {
                     getTilesPool: getTilesPool,

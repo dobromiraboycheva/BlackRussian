@@ -1,22 +1,22 @@
-var db = require('../wordDB/word.js')();
+//var db = require('../wordDB/wordsArray.js')();
 //////////////////////////start test scenarios///////////////////////////////////////////////
-var newTiles = [{letter: 'p', xCoord: 4, yCoord: 1},
-                {letter: 'e', xCoord: 5, yCoord: 1},
-                {letter: 'n', xCoord: 6, yCoord: 1}];
-//var board = [{xCoord: 2, yCoord: 7}];
-
-
-var boardAfterPlayersTurn = [[null, null, null, {letter: 'c', xCoord: 3, yCoord: 0}, null, null, null],
-    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 1}, {letter: 'p', xCoord: 4, yCoord: 1}, {letter: 'e', xCoord: 5,yCoord: 1}, {letter: 'n', xCoord: 6, yCoord: 1}],
-    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 2}, null, null, null],
-    [{letter: 'p', xCoord: 0, yCoord: 3}, {letter: 'a', xCoord: 1, yCoord: 3}, {letter: 'c',xCoord: 2,yCoord: 3}, {letter: 'k', xCoord: 3, yCoord: 3}, null, null, null]
-];
-
-var testBoard = [[null, null, null, {letter: 'c', xCoord: 3, yCoord: 0}, null, null, null],
-    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 1}, null, null, null],
-    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 2}, null, null, null],
-    [{letter: 'p', xCoord: 0, yCoord: 3}, {letter: 'a', xCoord: 1, yCoord: 3}, {letter: 'c', xCoord: 2, yCoord: 3}, {letter: 'k', xCoord: 3, yCoord: 3}, null, null, null]
-];
+//var newTiles = [{letter: 'p', xCoord: 4, yCoord: 1},
+//                {letter: 'e', xCoord: 5, yCoord: 1},
+//                {letter: 'n', xCoord: 6, yCoord: 1}];
+////var board = [{xCoord: 2, yCoord: 7}];
+//
+//
+//var boardAfterPlayersTurn = [[null, null, null, {letter: 'c', xCoord: 3, yCoord: 0}, null, null, null],
+//    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 1}, {letter: 'p', xCoord: 4, yCoord: 1}, {letter: 'e', xCoord: 5,yCoord: 1}, {letter: 'n', xCoord: 6, yCoord: 1}],
+//    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 2}, null, null, null],
+//    [{letter: 'p', xCoord: 0, yCoord: 3}, {letter: 'a', xCoord: 1, yCoord: 3}, {letter: 'c',xCoord: 2,yCoord: 3}, {letter: 'k', xCoord: 3, yCoord: 3}, null, null, null]
+//];
+//
+//var testBoard = [[null, null, null, {letter: 'c', xCoord: 3, yCoord: 0}, null, null, null],
+//    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 1}, null, null, null],
+//    [null, null, null, {letter: 'o', xCoord: 3, yCoord: 2}, null, null, null],
+//    [{letter: 'p', xCoord: 0, yCoord: 3}, {letter: 'a', xCoord: 1, yCoord: 3}, {letter: 'c', xCoord: 2, yCoord: 3}, {letter: 'k', xCoord: 3, yCoord: 3}, null, null, null]
+//];
 //////////////////////////end test scenarios///////////////////////////////////////////////
 
 // checks if the tile is placed on an already seized place
@@ -28,12 +28,12 @@ function checkFreeBoardPosition(tiles, board) {
             return false;
         }
     }
-    console.log('true from checkFreeBoardPosition');
+    // console.log('true from checkFreeBoardPosition');
     return true;
 }
 
 function isVerticalWord(tiles) {
-    console.log(tiles[0].xCoord === tiles[1].xCoord + ' from isVerticalWord');
+    // console.log(tiles[0].xCoord === tiles[1].xCoord + ' from isVerticalWord');
     return tiles[0].xCoord === tiles[1].xCoord;
 }
 
@@ -42,20 +42,42 @@ function validTilesPlacement(tiles) {
     for (var i = 1; i < tiles.length; i++) {
         if (isVerticalWord(tiles)) {
             if (tiles[i].xCoord !== tiles[i - 1].xCoord) {
-                console.log('false from validTilesPlacement');
+                // console.log('false from validTilesPlacement');
                 return false;
             }
         }
         else {
             if (tiles[i].yCoord !== tiles[i - 1].yCoord) {
-                console.log('false from validTilesPlacement');
+                // console.log('false from validTilesPlacement');
                 return false;
             }
         }
     }
-    console.log('true from validTilesPlacement');
+    // console.log('true from validTilesPlacement');
     return true;
 }
+
+function isBoardValid(tiles, board) {
+
+    var freeChecker = checkFreeBoardPosition(tiles, board);
+    var validTilesPlacedOnBoard = validTilesPlacement(tiles);
+
+    if (!validTilesPlacedOnBoard && !freeChecker) {
+        return false;
+    }
+
+    return true;
+
+    //var words = getGeneratedWords(tiles, board);
+    //if (!words) {
+    //    console.log('false from getGeneratedWords inside validateBoard');
+    //    return false; /*Could throw an Exception also*/
+    //}
+    //
+    //return words;
+}
+
+export default isBoardValid;
 
 //function getGeneratedWords(tiles, board) {
 //    var words = [];
@@ -243,15 +265,16 @@ function validTilesPlacement(tiles) {
 //    return true;
 //}
 
-function validateBoard(tiles, board) {
-
-    var words = getGeneratedWords(tiles, board);
-    if (!words) {
-        console.log('false from getGeneratedWords inside validateBoard');
-        return false; /*Could throw an Exception also*/
-    }
-
-    return words;
-}
+//function validateBoard(tiles, board) {
+//
+//    var words = getGeneratedWords(tiles, board);
+//    if (!words) {
+//        console.log('false from getGeneratedWords inside validateBoard');
+//        return false; /*Could throw an Exception also*/
+//    }
+//
+//    return words;
+//}
 
 //console.log(validateBoard(newTiles, testBoard));
+
