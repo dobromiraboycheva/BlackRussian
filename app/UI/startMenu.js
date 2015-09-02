@@ -1,9 +1,6 @@
 import 'jquery';
 import playScreen from 'app/UI/playScreen.js';
-import userRegistration from 'app/Queries/userRegistration.js';
-import userLogin from 'app/Queries/userLogin.js';
-import signOut from 'app/Queries/userSignout.js';
-import bestResult from 'app/Queries/getBestResults.js';
+import db from 'app/DB/webDB.js';
 
 var $startMenu = $('#start-menu');
 var $gameRules = $('#game-rules');
@@ -57,7 +54,7 @@ function onRegister(event) {
     var email = $('#email').val();
     var name = $('#displayName').val();
 
-    userRegistration.registerUser(userName, password, email, name);
+    db.registerUser(userName, password, email, name);
 
     $('#registerPanel').hide();
     $('#title').show();
@@ -69,7 +66,7 @@ function onRegister(event) {
 function onLoginClick(event) {
     var username = $('#username').val();
     var password = $('#password').val();
-    userLogin.login(username, password);
+    db.login(username, password);
 
     event.preventDefault();
 }
@@ -85,13 +82,13 @@ function onSignout(event) {
     $('#game-control').hide();
     $startMenu.show();
     $('#game-control').remove();
-    signOut.signout();
+    db.signOut();
 
     event.preventDefault();
 }
 
 function showBestResult(event) {
-    bestResult.showTopResult();
+    db.showTopResult();
     $('#bestResults').toggle();
 
     event.preventDefault();
