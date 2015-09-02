@@ -71,14 +71,6 @@ function onLoginClick(event) {
     var password = $('#password').val();
     userLogin.login(username, password);
 
-    $('#play-button').show();
-    $('#signoutButton').show();
-    $('#username').hide();
-    $('#password').hide();
-    $('#registerButton').hide();
-    $('#loginButton').hide();
-    $('#bestResults').hide();
-
     event.preventDefault();
 }
 
@@ -90,6 +82,9 @@ function onSignout(event) {
     $('#registerButton').show();
     $('#loginButton').show();
     $('#bestResults').hide();
+    $('#game-control').hide();
+    $startMenu.show();
+    $('#game-control').remove();
     signOut.signout();
 
     event.preventDefault();
@@ -102,6 +97,4 @@ function showBestResult(event) {
     event.preventDefault();
 }
 
-export default {
-    start
-};
+export default {start};
