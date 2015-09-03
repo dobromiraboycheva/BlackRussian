@@ -10,6 +10,7 @@ function start() {
     gameManager.init(PLAYERS_COUNT);
 
     var gameControl = $('<div />').attr('id', 'game-control').appendTo(document.body);
+    gameControl.addClass('text-center');
     gameControl.on('click', '.dash-tile', onTileClick);
 
     var board = domFactory.createBoard();
