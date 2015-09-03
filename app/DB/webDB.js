@@ -16,7 +16,7 @@ function loginOperations() {
     $('#signoutButton').show();
     $('#username').hide();
     $('#password').hide();
-    $('#registerButton').hide();
+    $('#register-button').hide();
     $('#loginButton').hide();
     $('#bestResults').hide();
 }
