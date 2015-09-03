@@ -74,11 +74,11 @@ function getShuffledTilesPool() {
         tiles.push(tilesInOrder.splice(index, 1)[0]);
     }
 
-    console.log(tiles);
     return tiles;
 }
 
 function giveNewTilesToPlayer(player, tilesPool) {
+    // console.log(player);
     while (player.tiles.length < 10 && tilesPool.length > 0) {
         player.tiles.push(tilesPool.pop());
     }
@@ -92,9 +92,11 @@ function getNextPlayer(currentPlayer, players) {
         }
     });
 
-    currentPlayerIndex = ((currentPlayerIndex + 1) < players.length) ? currentPlayerIndex++ : currentPlayerIndex = 0;
+    if (currentPlayerIndex + 1 >= players.length) {
+        currentPlayerIndex = -1;
+    }
 
-    return players[currentPlayerIndex];
+    return players[currentPlayerIndex + 1];
 }
 
 function calculateScore(newBoard, board) {
