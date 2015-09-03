@@ -6,10 +6,11 @@ import logicProvider from 'app/gameEngine/gameLogic.js';
 var gameManager = (function () {
 
     // this method should be used to initialize the gameManager`s instance when created
-    function init(playersCount) {
+    function init(playersCount, boardSize) {
 
         this.tilesPool = logicProvider.getShuffledTilesPool();
-        this.board = [];
+        this.board = [boardSize * boardSize];
+        this.boardMask = [];
 
         this.players = getPlayers(playersCount);
         this.players.forEach(function (player) {
@@ -21,18 +22,22 @@ var gameManager = (function () {
         return this;
     }
 
-    function makeMove(newBoard) {
+    function makeMove(newBoard, playerLeftTiles) {
 
         if (logicProvider.isBoardValid(newBoard)) {
-            updateGameState(newBoard);
+            updateGameState(newBoard, playerLeftTiles);
+            return true;
+        } else {
+            return false;
         }
 
     }
 
-    function updateGameState(newBoard) {
+    function updateGameState(newBoard, playerLeftTiles) {
         var turnScore = logicProvider.calculateScore(newBoard, board);
         currentPlayer.score += turnScore;
         board = newBoard;
+        currentPlayer.tiles = playerLeftTiles;
         logicProvider.giveNewTilesToPlayer(currentPlayer, tilesPool);
         currentPlayer = logicProvider.getNextPlayer(currentPlayer, players);
     }

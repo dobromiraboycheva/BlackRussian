@@ -7,7 +7,7 @@ function createPlayerDashboard() {
     return dash;
 }
 
-function createBoard() {
+function createBoard(boardSize) {
     var board = $('<div />').attr('id', 'board');
 
     var boardSquare = $('<div />').addClass('board-square')
@@ -23,10 +23,10 @@ function createBoard() {
 
     var row = 0;
     var col = 0;
-    for (var i = 0; i < 15 * 15; i += 1) {
-        var newBoardSquare = boardSquare.clone().attr('row', (i / 15) | 0).attr('col', col);
+    for (var i = 0; i < boardSize * boardSize; i += 1) {
+        var newBoardSquare = boardSquare.clone().attr('row', (i / boardSize) | 0).attr('col', col);
         board.append(newBoardSquare);
-        if ((i + 1) % 15 === 0) {
+        if ((i + 1) % boardSize === 0) {
             board.append($('</br>'));
             col = 0;
         } else {

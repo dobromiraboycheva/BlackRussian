@@ -4,35 +4,43 @@ import domFactory from 'app/UI/domFactory.js';
 
 var selectedTile;
 var gameManager = Object.create(GameManager);
+var BOARD_SIZE = 15;
+var PLAYERS_COUNT = 2;
 
 function start() {
-    var PLAYERS_COUNT = 2;
-    gameManager.init(PLAYERS_COUNT);
+    gameManager.init(PLAYERS_COUNT, BOARD_SIZE);
 
     var gameControl = $('<div />').attr('id', 'game-control').appendTo(document.body);
     gameControl.addClass('text-center');
     gameControl.on('click', '.dash-tile', onTileClick);
 
-    var board = domFactory.createBoard();
+    var board = domFactory.createBoard(BOARD_SIZE);
     board.on('click', '.board-square', onBoardSquareClick);
     board.appendTo('#game-control');
 
     var dash = domFactory.createPlayerDashboard();
     dash.on('click', onDashboardClick);
     var submitButton = $('#dash button');
-    submitButton.on('click', gameManager.makeMove);
+    submitButton.on('click', onSubmitButtonClick);
 
     dash.appendTo('#game-control');
 
-    updateBoardState();
-    updateDashboardState();
+    drawBoardState();
+    drawDashboardState();
 }
 
-function updateBoardState() {
+function onSubmitButtonClick() {
+    var newBoard = getBoardState();
+    var leftPlayerTiles = getPlayerTilesState();
+
+    gameManager.makeMove(newBoard, leftPlayerTiles);
+}
+
+function drawBoardState() {
 
 }
 
-function updateDashboardState() {
+function drawDashboardState() {
     var playerTiles = gameManager.currentPlayer.tiles;
     var dash = $('#dash');
     var dashTile = $('<div />').addClass('dash-tile')

@@ -97,7 +97,7 @@ function getNextPlayer(currentPlayer, players) {
     return players[currentPlayerIndex];
 }
 
-function calculateScore(currentPlayer, newWordTiles, tilesOnBoard) {
+function calculateScore(newBoard, board) {
     // TODO: Implement logic!
     return 0;
 }
