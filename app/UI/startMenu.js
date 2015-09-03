@@ -10,6 +10,16 @@ function start() {
     loadHandlers();
     $startMenu.show();
     $('#loading').hide();
+    if(db.userIsLoged(true)){
+        db.loginOperations();
+    }
+}
+
+function onLoginClick(event) {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    db.login(username, password);
+    event.preventDefault();
 }
 
 function loadHandlers() {
@@ -63,14 +73,6 @@ function onRegister(event) {
     event.preventDefault();
 }
 
-function onLoginClick(event) {
-    var username = $('#username').val();
-    var password = $('#password').val();
-    db.login(username, password);
-
-    event.preventDefault();
-}
-
 function onSignout(event) {
     $('#play-button').hide();
     $('#signoutButton').hide();
@@ -94,4 +96,4 @@ function showBestResult(event) {
     event.preventDefault();
 }
 
-export default {start};
+export default {start, };
