@@ -61,7 +61,7 @@ function updateUiObjectsState() {
             }
          });
 
-         uiBoard[index] = $.extend({}, playerTileToPop);
+         uiBoard[index] = playerTileToPop;
          uiPlayerTiles = uiPlayerTiles.filter(function (tile) {
             return tile !== playerTileToPop;
          });

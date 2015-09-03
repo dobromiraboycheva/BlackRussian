@@ -35,7 +35,7 @@ var gameManager = (function () {
 
       if (logicProvider.isBoardValid(newBoard)) {
          updateGameState.call(this, newBoard, newPlayerTiles);
-
+         
          // var turnScore = logicProvider.calculateScore(newBoard, this.board);
          // this.currentPlayer.score += turnScore;
          // this.board = newBoard.slice();
@@ -56,6 +56,7 @@ var gameManager = (function () {
       this.currentPlayer.tiles = newPlayerTiles;
       logicProvider.giveNewTilesToPlayer(this.currentPlayer, this.tilesPool);
       this.currentPlayer = logicProvider.getNextPlayer(this.currentPlayer, this.players);
+      // console.log(this.board);
    }
 
    // this creates and initializes the player objects for the game. It is called only
