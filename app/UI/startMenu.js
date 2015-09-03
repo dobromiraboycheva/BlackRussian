@@ -7,12 +7,12 @@ var $gameRules = $('#game-rules');
 var $loginForm = $('#login-form');
 
 function start() {
+    if(db.userIsLoged(localStorage.currentUser)){
+        db.loginOperations();
+    }
     loadHandlers();
     $startMenu.show();
     $('#loading').hide();
-    if(db.userIsLoged(true)){
-        db.loginOperations();
-    }
 }
 
 function onLoginClick(event) {
