@@ -36,14 +36,14 @@ function loadHandlers() {
         $gameRules.hide();
     });
 
-    $('#registerButton').on('click', onRegisterClick);
-    $('#register').on('click', onRegister);
+    $('#register-button').on('click', onRegisterButtonClick);
+    $('#register-submit').on('click', onRegisterSubmit);
     $('#signoutButton').on('click', onSignout);
     $('#bestresults-button').on('click', showBestResult);
 
 }
 
-function onRegisterClick() {
+function onRegisterButtonClick() {
 
     $('#title').hide();
     $('#start-menu').hide();
@@ -51,7 +51,7 @@ function onRegisterClick() {
     $('#bestResults').hide();
 }
 
-function onRegister(event) {
+function onRegisterSubmit(event) {
     var userName = $('#name').val();
     var password = $('#register-password').val();
     var email = $('#email').val();
